@@ -24,10 +24,6 @@ export const Details = () => {
   const pet = Result.data.pets[0];
   return (
     <div className="details">
-      <img
-        src={pet.images[0]}
-        style={{ width: "200px", height: "200px", objectFit: "cover" }}
-      />
       <h1>{pet.name}</h1>
       <h2>{`${pet.animal} - ${pet.breed} - ${pet.city}`}</h2>
       <button>Adopt {pet.name}</button>
