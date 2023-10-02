@@ -3,8 +3,13 @@ import { useParams } from "react-router-dom";
 import { FetchPet } from "../Api/FetchPet";
 import { Carousel } from "./Carousel";
 import { ErrorBoundary } from "../Errors/ErrorBoundary";
+import { useState } from "react";
+import { Modal } from "./Modal";
 
-export const Details = () => {
+const Details = () => {
+  //add showModal
+  const [showModal,setshowModal]=useState(false);
+
   const { id } = useParams();
   const Result = useQuery(["details", id], FetchPet);
   //console.log(Result)
@@ -29,16 +34,25 @@ export const Details = () => {
       <Carousel images={pet.images} />
       <h1>{pet.name}</h1>
       <h2>{`${pet.animal} - ${pet.breed} - ${pet.city}`}</h2>
-      <button>Adopt {pet.name}</button>
+      <button onClick={()=>setshowModal(true)}>Adopt {pet.name}</button>
       <p>{pet.description}</p>
+      {showModal?(<Modal>
+        {/* children of Modal */}
+        <div>
+          <h1>Would You Like to Adopt {pet.name}?</h1>
+          <div className="buttons">
+            <button>Yes</button>
+            <button onClick={()=>setshowModal(false)}>No</button>
+          </div>
+        </div>
+      </Modal>):null}
     </div>
   );
 };
-
-export default function DetailsErrorBoundary(props) {
-  return (
-    <ErrorBoundary>
-      <Details {...props} />
-    </ErrorBoundary>
-  );
+function DetailsErrorBoundary(props) {
+  <ErrorBoundary>
+    <Details {...props}/>
+  </ErrorBoundary>;
 }
+
+export default Details;
