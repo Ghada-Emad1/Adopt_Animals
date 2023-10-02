@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import useBreedList from "../hooks/useBreedList";
 import { Result } from "./Result";
-import { Details } from "./Details";
 import { useQuery } from "@tanstack/react-query";
 import { FetchSearch } from "../Api/FetchSearch";
 

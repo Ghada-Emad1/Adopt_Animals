@@ -1,8 +1,9 @@
-import { Details } from "./components/Details";
-//import { Pet } from "./Pet";
+
 import { SearchParam } from "./components/SearchParam";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ErrorBoundary } from "./Errors/ErrorBoundary";
+import Details from "./components/Details";
 function App() {
   const queryclient = new QueryClient({
     defaultOptions: {
@@ -20,7 +21,7 @@ function App() {
             <Link to="/">Adopt Me!ee</Link>
           </header>
           <Routes>
-            <Route path="/details/:id" element={<Details />} />
+            <Route path="/details/:id" element={<Details/>} />
             <Route path="/" element={<SearchParam />} />
           </Routes>
         </div>
