@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import useBreedList from "../hooks/useBreedList";
 import { Result } from "./Result";
 import { useQuery } from "@tanstack/react-query";
 import { FetchSearch } from "../Api/FetchSearch";
+import { AdoptAnimalPetContext } from "../contexts/AdoptAnimalPetContext";
 
 const animals = ["dog", "cat", "rabbit", "bird"];
 export const SearchParam = () => {
+  const [adoptedPet] = useContext(AdoptAnimalPetContext);
+  console.log(adoptedPet)
   const [requestParams, setrequestParams] = useState({
     location: "",
     animal: "",
@@ -15,7 +18,7 @@ export const SearchParam = () => {
   });
   const [animal, setanimal] = useState("");
   const [Breeds] = useBreedList(animal);
-  
+
   const results = useQuery(["search", requestParams], FetchSearch);
   const pets = results?.data?.pets ?? [];
   return (
@@ -32,6 +35,11 @@ export const SearchParam = () => {
           setrequestParams(obj);
         }}
       >
+        {adoptedPet ? (
+          <div className="pet image-container">
+            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+          </div>
+        ) : null}
         <label htmlFor="location">
           <input name="location" id="location" placeholder="Your Location" />
         </label>
