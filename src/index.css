@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+    body{
+       font-family: Georgia, 'Times New Roman', Times, serif
+    }
+}
+
+@layer components {
+    .search-input{
+        @apply w-60 mb-5 block;
+    }
+    .modal{
+        background-color: rgba(0,0,0,0.9);
+        position:fixed;
+        left:0;
+        right:0;
+        top:0;
+        z-index:10;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .button{
+        @apply bg-orange-500 px-4 py-2 rounded;
+    }
+}
+
+@layer utilities{
+    .grayed-out-disabled{
+        @apply disabled:opacity-50;
+    }
+    .active{
+        @apply border border-orange-200 opacity-50 rounded-full w-[100px] h-[100px] cursor-pointer;
+    }
+}
