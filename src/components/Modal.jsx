@@ -14,6 +14,6 @@ export const Modal=({children})=>{
         
         return ()=>ModalRoot.removeChild(elRef.current)
     },[])
-    console.log(children)
-    return createPortal(<div>{children}</div>,elRef.current)
+    //console.log(children)
+    return createPortal(<div className="modal">{children}</div>,elRef.current)
 }

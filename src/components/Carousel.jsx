@@ -6,7 +6,7 @@ export class Carousel extends Component {
   };
 
   static defaultProps = {
-    images: ["http://pets-images.dev-apis.com/pets/none.jpg"],
+    images: ["https://pets-images.dev-apis.com/pets/none.jpg"],
   };
 
   handleIndexClick = (event) => {
@@ -20,15 +20,15 @@ export class Carousel extends Component {
     const { active } = this.state;
     const { images } = this.props;
     return (
-      <div className="carousel">
-        <img src={images[active]} alt="animal" />
-        <div className="carousel-smaller">
+      <div className="flex flex-col justify-center items-center gap-10   mx-auto rounded-lg">
+        <img src={images[active]} alt="animal" className=" sm:max-w-[300px] max-h-[300px] " />
+        <div className=" grid grid-cols-2 items-center justify-center gap-2 sm:flex sm:items-center sm:justify-center">
           {images.map((photo, index) => (
             <img
               src={photo}
-              key={photo}
+              key={photo} 
               alt="animal thumbnail"
-              className={index === active ? "active" : ""}
+              className={index === active ? "active" : "w-[100px] h-[100px] rounded-full inline-block m-[15px] cursor-pointer border border-orange-300 "}
               onClick={this.handleIndexClick}
               data-index={index}
             />

@@ -3,7 +3,7 @@ import { Pet } from "./Pet";
 export const Result = ({ pets }) => {
   //console.log(pets);
   return (
-    <div className="search">
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {pets.length ? (
         pets.map((pet) => {
           return (
